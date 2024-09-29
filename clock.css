@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    /* Ensure the font is consistent */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #acbaca;
+}
+
+.clock {
+    position: relative;
+    width: 400px;
+    /* Adjusted width */
+    height: 500px;
+    /* Adjusted height */
+    padding-top: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 50px;
+    background: #c9d5e0;
+    border-top-left-radius: 250px;
+    border-top-right-radius: 250px;
+    box-shadow: 45px 45px 15px rgba(0, 0, 0, 0.15),
+        inset 15px 15px 10px rgba(255, 255, 255, 0.75),
+        -15px -15px 35px rgba(255, 255, 255, 0.55),
+        inset -2px -2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.numbers {
+    position: relative;
+    /* Changed from absolute to relative */
+    width: 300px;
+    /* Adjusted size */
+    height: 300px;
+    /* Adjusted size */
+    top: 0px;
+    background: #152b4a;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 7px 7px 22px #152b4a66,
+        inset 7px 7px 7px rgba(255, 255, 255, 0.55),
+        -9px -9px 15px rgba(255, 255, 255, 1);
+    margin-bottom: 20px;
+    /* Added margin to move it up */
+}
+
+.numbers::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #e91e63;
+    z-index: 100000;
+    box-shadow: 0 0 0 1px #e91e63,
+        0 0 0 3px #fff,
+        0 0 5px 5px rgba(0, 0, 0, 0.15);
+}
+
+.numbers span {
+    position: absolute;
+    inset: 15px;
+    text-align: center;
+    color: #fff;
+    font-size: 1.25em;
+    transform: rotate(calc(30deg * var(--i)));
+}
+
+.numbers span b {
+    font-weight: 400;
+    display: inline-block;
+    font-size: 1.25rem;
+    transform: rotate(calc(-30deg * var(--i)));
+}
+
+.numbers .circle {
+    position: absolute;
+    width: 200px;
+    /* Adjusted size */
+    height: 200px;
+    /* Adjusted size */
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 10;
+}
+
+.numbers .circle i {
+    position: absolute;
+    width: 6px;
+    height: 50%;
+    background: var(--clr);
+    opacity: 0.75;
+    transform-origin: bottom;
+    transform: scaleY(0.5);
+}
+
+.numbers .circle#sec i {
+    width: 2px;
+}
+
+.numbers .circle#min i {
+    width: 4px;
+}
+
+.numbers .circle#min {
+    width: 180px;
+    /* Adjusted size */
+    height: 180px;
+    /* Adjusted size */
+}
+
+.numbers .circle#hrs {
+    width: 140px;
+    /* Adjusted size */
+    height: 140px;
+    /* Adjusted size */
+}
+
+.numbers .circle::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--clr);
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px var(--clr),
+        0 0 60px var(--clr);
+}
+
+#time {
+    position: absolute;
+    bottom: 0;
+    /* Position adjusted for horizontal alignment */
+    display: flex;
+    flex-direction: row;
+    /* Changed to horizontal layout */
+    align-items: center;
+    bottom: 25px;
+    padding: 10px 20px;
+    font-size: 2em;
+    font-weight: 600;
+    border-radius: 40px;
+    background: #152b4a;
+    box-shadow: 7px 7px 22px #152b4a66,
+        inset 7px 7px 7px rgba(255, 255, 255, 0.55),
+        -9px -9px 15px rgba(255, 255, 255, 1);
+}
+
+#time div {
+    position: relative;
+    width: 60px;
+
+    text-align: center;
+    color: var(--clr);
+    opacity: 0.75;
+}
+
+#time div:last-child {
+    font-size: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+#time div:nth-child(1)::after,
+#time div:nth-child(2)::after {
+    content: ':';
+    position: absolute;
+    right: -4px;
+}
+
+#time div:nth-child(2)::after {
+    animation: animate 1s steps(1) infinite;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
